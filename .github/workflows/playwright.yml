@@ -17,17 +17,17 @@ jobs:
         shardIndex: [1, 2, 3, 4]
         shardTotal: [4]
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.57.0-noble
       options: --user 1001
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
         version: 10
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: lts/*
         cache: 'pnpm'
@@ -39,7 +39,7 @@ jobs:
       run: pnpm exec playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 
     - name: Upload blob report
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
       with:
         name: blob-report-${{ matrix.shardIndex }}
@@ -51,14 +51,14 @@ jobs:
     needs: playwright-tests
     if: ${{ !cancelled() }}
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
       with:
         version: 10
 
-    - uses: actions/setup-node@v4
+    - uses: actions/setup-node@v5
       with:
         node-version: lts/*
         cache: 'pnpm'
@@ -100,7 +100,7 @@ jobs:
         pnpm exec playwright merge-reports --config=src/configurations/merge-report.config.ts ./all-blob-reports
 
     - name: Upload test reports
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v5
       if: ${{ !cancelled() }}
       with:
         name: test-reports--attempt-${{ github.run_attempt }}

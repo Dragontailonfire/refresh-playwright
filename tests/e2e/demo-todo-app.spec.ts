@@ -1,6 +1,5 @@
-import { TodoPage } from "@page-objects/todo-page/todo-page";
 import { test } from "@fixtures/default.fixture";
-import { todo } from "node:test";
+import { TodoPage } from "@page-objects/todo-page/todo-page";
 
 const TODO_ITEMS = [
   "buy some cheese",

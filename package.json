@@ -3,17 +3,22 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "exec playwright test",
+    "test:headed": "exec playwright test --headed",
+    "report:html": "exec playwright show-report",
+    "report:monocart": "monocart show-report monocart-report/index.html"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.3",
-    "monocart-reporter": "^2.9.18",
-    "typescript": "^5.8.3"
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^22.19.1",
+    "monocart-reporter": "^2.9.23",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
-    "dotenv": "^16.5.0"
+    "dotenv": "^16.6.1"
   }
 }
