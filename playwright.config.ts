@@ -20,8 +20,13 @@ export default defineConfig({
   reporter: process.env.CI
     ? [["blob"], ["dot"]]
     : [
-        ["dot"],
-        ["html"],
+        ["list"],
+        [
+          "html",
+          {
+            title: "Refresh Playwright Test Execution Report",
+          },
+        ],
         [
           "monocart-reporter",
           {
@@ -46,7 +51,7 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: "chromium e2e",
+      name: "TO-DO app on chromium e2e",
       use: { ...devices["Desktop Chrome"] },
     },
 
