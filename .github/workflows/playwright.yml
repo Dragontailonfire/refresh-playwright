@@ -133,8 +133,8 @@ jobs:
       if: always()
       id: set_url
       run: |
-        MONOCART_REPORT_URL="https://narayanan-vk.github.io/refresh-playwright/monocart-report"
-        HTML_REPORT_URL="https://narayanan-vk.github.io/refresh-playwright/html-report/${{ github.run_id }}"
+        MONOCART_REPORT_URL="https://dragontailonfire.github.io/refresh-playwright/monocart-report"
+        HTML_REPORT_URL="https://dragontailonfire.github.io/refresh-playwright/html-report/${{ github.run_id }}"
         echo "## 📊 Test Report" >> $GITHUB_STEP_SUMMARY
         echo "📝 [View Full HTML Test Report]($HTML_REPORT_URL)" >> $GITHUB_STEP_SUMMARY
         echo "📝 [View Full Monocart Test Report]($MONOCART_REPORT_URL)" >> $GITHUB_STEP_SUMMARY

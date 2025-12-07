@@ -25,6 +25,10 @@ export class TodoPage {
     this.completedFilter = this.page.getByRole("link", { name: "Completed" });
   }
 
+  async navigate() {
+    await this.page.goto("https://demo.playwright.dev/todomvc");
+  }
+
   async createATodoItem(todoItemName: string) {
     await this.todoEntryField.fill(todoItemName);
     await this.todoEntryField.press("Enter");
@@ -160,8 +164,32 @@ export class TodoPage {
   }
 
   async verifyFilterNotSelected(filterName: string) {
-    await expect(this.page.getByRole("link", { name: filterName })).not.toHaveClass(
-      "selected"
-    );
+    await expect(
+      this.page.getByRole("link", { name: filterName })
+    ).not.toHaveClass("selected");
+  }
+
+  async checkNumberOfTodosInLocalStorage(expected: number) {
+    return await this.page.waitForFunction((e) => {
+      return JSON.parse(localStorage["react-todos"]).length === e;
+    }, expected);
+  }
+
+  async checkNumberOfCompletedTodosInLocalStorage(expected: number) {
+    return await this.page.waitForFunction((e) => {
+      return (
+        JSON.parse(localStorage["react-todos"]).filter(
+          (todo: any) => todo.completed
+        ).length === e
+      );
+    }, expected);
+  }
+
+  async checkTodosInLocalStorage(title: string) {
+    return await this.page.waitForFunction((t) => {
+      return JSON.parse(localStorage["react-todos"])
+        .map((todo: any) => todo.title)
+        .includes(t);
+    }, title);
   }
 }
